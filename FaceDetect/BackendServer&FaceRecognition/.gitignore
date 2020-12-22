@@ -1,0 +1,4 @@
+*.iml
+.vs
+.sln
+/FaceDetectBackend/FaceDetectBackend.pyproj
