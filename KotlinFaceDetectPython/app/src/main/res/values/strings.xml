@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">KotlinFaceDetectPython</string>
+    <string name="AddIPAddress">Add</string>
+    <string name="Upload">UPLOAD</string>
+    <string name="enter_ip_adress">000.000.00.00</string>
+    <string name="image_to_process">Image to process</string>
+    <string name="IPAddress">192.168.0.36</string>
+</resources>
