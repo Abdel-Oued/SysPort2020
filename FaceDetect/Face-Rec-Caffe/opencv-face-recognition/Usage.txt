@@ -1,0 +1,6 @@
+1-Create folders with the name of people in dataset folder("dataset/name")
+2- Run python auto_build_face_dataset.py --output "dataset/Name"
+3- Run extract_embeddings.py
+4- Run train_model.py
+5- Run recongnize_video.py (webcam video) OR Run recongnize.py --image images/example.jpg (image from /images)
+

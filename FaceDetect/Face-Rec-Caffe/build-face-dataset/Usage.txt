@@ -1,0 +1,4 @@
+1-Create folders with the name of people in dataset folder("dataset/name")
+2- Run python auto_build_face_dataset.py --output "dataset/Name"
+
+
