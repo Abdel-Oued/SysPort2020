@@ -1,0 +1,2 @@
+./pre_img\Akshay Kumar\ActiOn_22.png 85 574 211 730
+./pre_img\Shahrukh Khan\ActiOn_21.png
