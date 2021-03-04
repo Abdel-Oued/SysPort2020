@@ -1,7 +1,8 @@
 # SysPort2020
-Etude et mise en place d'un système d'acquisition vidéo permettant l'observation d'une scène à l'aide de (plusieurs) capteurs de vision (téléphone portable, etc.)
+Etude et mise en place d'un système d'acquisition vidéo permettant l'observation en temps réel d'une scène à l'aide d'un téléphone Android.
+Le flux vidéo de la caméra est traité en temps réel pour permettre l'identification de personnes.
 
-Le repertoire FaceDetect contient les programmes qui sont destinés à tourner sur un ordinateur (programme de reconnaissance faciale, serveur, ...).
+Le repertoire FaceDetect contient les programmes de détection qui sont destinés à tourner sur un ordinateur (programme de reconnaissance faciale, serveur, ...).
 
 Le repertoire SysPortApp contient les codes de l'application Android de live streaming.
 
