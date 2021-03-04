@@ -14,9 +14,74 @@ import pickle
 import time
 import cv2
 import os
-from multiprocessing.dummy import Pool
+import json
+from flask import Flask, request, Response
 
-def recognize_frame(frame, h, w):
+
+#construct the argument parser and parse the arguments
+ap = argparse.ArgumentParser()
+ap.add_argument("-d", "--detector", default="face_detection_model",
+    help="path to OpenCV's deep learning face detector")
+ap.add_argument("-m", "--embedding-model", default="openface_nn4.small2.v1.t7",
+    help="path to OpenCV's deep learning face embedding model")
+ap.add_argument("-r", "--recognizer", default="output/recognizer.pickle",
+    help="path to model trained to recognize faces")
+ap.add_argument("-l", "--le", default="output/le.pickle",
+    help="path to label encoder")
+ap.add_argument("-c", "--confidence", type=float, default=0.5,
+    help="minimum probability to filter weak detections")
+args = vars(ap.parse_args())
+
+
+
+# test existing name
+def exist_name(filename,name):
+	flag=True
+	with open(filename) as json_file:
+		data = json.load(json_file)
+	if(len(data)!=0):
+		for p in data:
+			if(p==name):
+				#print(p)
+				flag=False
+	return flag
+
+data={}
+open('file.txt', 'w').close()
+# load our serialized face detector from disk
+print("[INFO] loading face detector...")
+protoPath = os.path.sep.join([args["detector"], "deploy.prototxt"])
+modelPath = os.path.sep.join([args["detector"],
+	"res10_300x300_ssd_iter_140000.caffemodel"])
+detector = cv2.dnn.readNetFromCaffe(protoPath, modelPath)
+
+# load our serialized face embedding model from disk
+print("[INFO] loading face recognizer...")
+embedder = cv2.dnn.readNetFromTorch(args["embedding_model"])
+
+# load the actual face recognition model along with the label encoder
+recognizer = pickle.loads(open(args["recognizer"], "rb").read())
+le = pickle.loads(open(args["le"], "rb").read())
+
+# initialize the video stream, then allow the camera sensor to warm up
+print("[INFO] starting video stream...")
+vs = VideoStream(src=0).start()
+time.sleep(2.0)
+
+# start the FPS throughput estimator
+fps = FPS().start()
+
+# loop over frames from the video file stream
+while True:
+	# grab the frame from the threaded video stream
+	frame = vs.read()
+
+	# resize the frame to have a width of 600 pixels (while
+	# maintaining the aspect ratio), and then grab the image
+	# dimensions
+	frame = imutils.resize(frame)
+	(h, w) = frame.shape[:2]
+
 	# construct a blob from the image
 	imageBlob = cv2.dnn.blobFromImage(
 		cv2.resize(frame, (300, 300)), 1.0, (300, 300),
@@ -52,7 +117,7 @@ def recognize_frame(frame, h, w):
 			# through our face embedding model to obtain the 128-d
 			# quantification of the face
 			faceBlob = cv2.dnn.blobFromImage(face, 1.0 / 255,
-											 (96, 96), (0, 0, 0), swapRB=True, crop=False)
+				(96, 96), (0, 0, 0), swapRB=True, crop=False)
 			embedder.setInput(faceBlob)
 			vec = embedder.forward()
 
@@ -61,96 +126,29 @@ def recognize_frame(frame, h, w):
 			j = np.argmax(preds)
 			proba = preds[j]
 			name = le.classes_[j]
-
 			# draw the bounding box of the face along with the
 			# associated probability
 			text = "{}: {:.2f}%".format(name, proba * 100)
 			y = startY - 10 if startY - 10 > 10 else startY + 10
-			cv2.rectangle(frame, (startX, startY), (endX, endY),
-						  (0, 0, 255), 2)
-			cv2.putText(frame, text, (startX, y),
-						cv2.FONT_HERSHEY_SIMPLEX, 0.45, (0, 0, 255), 2)
-	return True
-
-# construct the argument parser and parse the arguments
-ap = argparse.ArgumentParser()
-ap.add_argument("-d", "--detector", default="face_detection_model",
-    help="path to OpenCV's deep learning face detector")
-ap.add_argument("-m", "--embedding-model", default="openface_nn4.small2.v1.t7",
-    help="path to OpenCV's deep learning face embedding model")
-ap.add_argument("-r", "--recognizer", default="output/recognizer.pickle",
-    help="path to model trained to recognize faces")
-ap.add_argument("-l", "--le", default="output/le.pickle",
-    help="path to label encoder")
-ap.add_argument("-c", "--confidence", type=float, default=0.5,
-    help="minimum probability to filter weak detections")
-args = vars(ap.parse_args())
-
-# load our serialized face detector from disk
-print("[INFO] loading face detector...")
-protoPath = os.path.sep.join([args["detector"], "deploy.prototxt"])
-modelPath = os.path.sep.join([args["detector"],
-	"res10_300x300_ssd_iter_140000.caffemodel"])
-detector = cv2.dnn.readNetFromCaffe(protoPath, modelPath)
-
-# load our serialized face embedding model from disk
-print("[INFO] loading face recognizer...")
-embedder = cv2.dnn.readNetFromTorch(args["embedding_model"])
-
-# load the actual face recognition model along with the label encoder
-recognizer = pickle.loads(open(args["recognizer"], "rb").read())
-le = pickle.loads(open(args["le"], "rb").read())
-
-# initialize the video stream, then allow the camera sensor to warm up
-print("[INFO] starting video stream...")
-#vs = VideoStream('rtsp://192.168.0.17:1234/').start()
-vs = VideoStream('rtsp://92.92.99.61:1234/').start()
-#vs = cv2.VideoCapture(0)  #'rtsp://192.168.0.17:1234/'
-time.sleep(2.0)
-
-# start the FPS throughput estimator
-fps = FPS().start()
-
-# make the window resizable
-cv2.namedWindow('Streaming', cv2.WINDOW_NORMAL)
-
-ready_to_detect_identity = True
-
-# loop over frames from the video file stream
-while True:
-	# grab the frame from the threaded video stream
-	frame = vs.read()  # à utiliser avec cv2.VideoStream
-	#_, frame = vs.read()  # à utiliser avec cv2.VideoCapture
-
-	# resize the frame to have a width of 600 pixels (while
-	# maintaining the aspect ratio), and then grab the image
-	# dimensions
-
-	frame = imutils.resize(frame)
-	(h, w) = frame.shape[:2]
-	#recognize_frame(frame, h, w)
-
-
-	if ready_to_detect_identity:
-		### Stop analysis while identifying
-		ready_to_detect_identity = False
-		# an other process
-		pool = Pool(processes=1)
-		ready_to_detect_identity = pool.apply_async(recognize_frame, [frame, h, w]).get()
-		pool.close()
+			cv2.rectangle(frame, (startX, startY), (endX, endY),(0, 0, 255), 2)
+			cv2.putText(frame, text, (startX, y),cv2.FONT_HERSHEY_SIMPLEX, 0.45, (0, 0, 255), 2)
+			dico = {"id":"...", "name":"...", "img":"...", "canServe":"..."}
+			with open('file.txt', 'w') as outfile:
+				json.dump(data, outfile)
+			if(exist_name("file.txt",name)==True):
+				data[name]=text+"  startX:"+str(startX)+"  startY:"+str(startY)
 
 	# update the FPS counter
 	fps.update()
 
-
-
 	# show the output frame
-	cv2.imshow("Streaming", frame)
+	cv2.imshow("Frame", frame)
 	key = cv2.waitKey(1) & 0xFF
 
 	# if the `q` key was pressed, break from the loop
 	if key == ord("q"):
 		break
+
 
 # stop the timer and display FPS information
 fps.stop()
@@ -160,3 +158,33 @@ print("[INFO] approx. FPS: {:.2f}".format(fps.fps()))
 # do a bit of cleanup
 cv2.destroyAllWindows()
 vs.stop()
+# data = [{},{}]
+
+app = Flask(__name__)
+
+@app.route("/result/",methods = ['GET','POST'])
+def result():
+	data = { "Abdel": 1000, "Lara": 5}
+	# with open('file.txt', 'w') as outfile:
+	# 	json.dump(data, outfile)
+	outfile = open("file.txt")
+	#json.dump(data, outfile)
+	return Response(response=outfile, status=200,mimetype="application/json")
+
+if __name__ == "__main__":
+    app.run()
+# data = [{},{}]
+
+app = Flask(__name__)
+
+@app.route("/result/",methods = ['GET','POST'])
+def result():
+	data = { "Abdel": 1000, "Lara": 5}
+	# with open('file.txt', 'w') as outfile:
+	# 	json.dump(data, outfile)
+	outfile = open("file.txt")
+	#json.dump(data, outfile)
+	return Response(response=outfile, status=200,mimetype="application/json")
+
+if __name__ == "__main__":
+    app.run()
