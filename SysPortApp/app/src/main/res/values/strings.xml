@@ -5,5 +5,8 @@
     <string name="start">Start</string>
     <string name="stop">Stop</string>
     <string name="information">"Information place holder "</string>
+    <string name="show_all">Show all</string>
+    <string name="show_rent">Rent</string>
+    <string name="show_buy">Buy</string>
 
 </resources>

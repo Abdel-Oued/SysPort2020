@@ -1,12 +1,12 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\Users\USER\Documents\Sysport\SysPortApp\libstreaming\src\main\AndroidManifest.xml:1:1-10:12
-INJECTED from C:\Users\USER\Documents\Sysport\SysPortApp\libstreaming\src\main\AndroidManifest.xml:1:1-10:12
-INJECTED from C:\Users\USER\Documents\Sysport\SysPortApp\libstreaming\src\main\AndroidManifest.xml:1:1-10:12
-INJECTED from C:\Users\USER\Documents\Sysport\SysPortApp\libstreaming\src\main\AndroidManifest.xml:1:1-10:12
-INJECTED from C:\Users\USER\Documents\Sysport\SysPortApp\libstreaming\src\main\AndroidManifest.xml:1:1-10:12
-INJECTED from C:\Users\USER\Documents\Sysport\SysPortApp\libstreaming\src\main\AndroidManifest.xml:1:1-10:12
-INJECTED from C:\Users\USER\Documents\Sysport\SysPortApp\libstreaming\src\main\AndroidManifest.xml:1:1-10:12
+ADDED from C:\Users\USER\Documents\Sysport\SysPortApp\libstreaming\src\main\AndroidManifest.xml:1:1-6:12
+INJECTED from C:\Users\USER\Documents\Sysport\SysPortApp\libstreaming\src\main\AndroidManifest.xml:1:1-6:12
+INJECTED from C:\Users\USER\Documents\Sysport\SysPortApp\libstreaming\src\main\AndroidManifest.xml:1:1-6:12
+INJECTED from C:\Users\USER\Documents\Sysport\SysPortApp\libstreaming\src\main\AndroidManifest.xml:1:1-6:12
+INJECTED from C:\Users\USER\Documents\Sysport\SysPortApp\libstreaming\src\main\AndroidManifest.xml:1:1-6:12
+INJECTED from C:\Users\USER\Documents\Sysport\SysPortApp\libstreaming\src\main\AndroidManifest.xml:1:1-6:12
+INJECTED from C:\Users\USER\Documents\Sysport\SysPortApp\libstreaming\src\main\AndroidManifest.xml:1:1-6:12
 	package
 		ADDED from C:\Users\USER\Documents\Sysport\SysPortApp\libstreaming\src\main\AndroidManifest.xml:2:5-45
 		INJECTED from C:\Users\USER\Documents\Sysport\SysPortApp\libstreaming\src\main\AndroidManifest.xml
@@ -22,16 +22,16 @@ INJECTED from C:\Users\USER\Documents\Sysport\SysPortApp\libstreaming\src\main\A
 		INJECTED from C:\Users\USER\Documents\Sysport\SysPortApp\libstreaming\src\main\AndroidManifest.xml
 		INJECTED from C:\Users\USER\Documents\Sysport\SysPortApp\libstreaming\src\main\AndroidManifest.xml
 uses-sdk
-ADDED from C:\Users\USER\Documents\Sysport\SysPortApp\libstreaming\src\main\AndroidManifest.xml:6:5-8:41
-INJECTED from C:\Users\USER\Documents\Sysport\SysPortApp\libstreaming\src\main\AndroidManifest.xml:6:5-8:41
-INJECTED from C:\Users\USER\Documents\Sysport\SysPortApp\libstreaming\src\main\AndroidManifest.xml:6:5-8:41
-INJECTED from C:\Users\USER\Documents\Sysport\SysPortApp\libstreaming\src\main\AndroidManifest.xml:6:5-8:41
-INJECTED from C:\Users\USER\Documents\Sysport\SysPortApp\libstreaming\src\main\AndroidManifest.xml:6:5-8:41
+INJECTED from C:\Users\USER\Documents\Sysport\SysPortApp\libstreaming\src\main\AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from C:\Users\USER\Documents\Sysport\SysPortApp\libstreaming\src\main\AndroidManifest.xml
+INJECTED from C:\Users\USER\Documents\Sysport\SysPortApp\libstreaming\src\main\AndroidManifest.xml
+INJECTED from C:\Users\USER\Documents\Sysport\SysPortApp\libstreaming\src\main\AndroidManifest.xml
+INJECTED from C:\Users\USER\Documents\Sysport\SysPortApp\libstreaming\src\main\AndroidManifest.xml
 	android:targetSdkVersion
-		ADDED from C:\Users\USER\Documents\Sysport\SysPortApp\libstreaming\src\main\AndroidManifest.xml:8:9-38
 		INJECTED from C:\Users\USER\Documents\Sysport\SysPortApp\libstreaming\src\main\AndroidManifest.xml
+		ADDED from C:\Users\USER\Documents\Sysport\SysPortApp\libstreaming\src\main\AndroidManifest.xml
 		INJECTED from C:\Users\USER\Documents\Sysport\SysPortApp\libstreaming\src\main\AndroidManifest.xml
 	android:minSdkVersion
-		ADDED from C:\Users\USER\Documents\Sysport\SysPortApp\libstreaming\src\main\AndroidManifest.xml:7:9-35
 		INJECTED from C:\Users\USER\Documents\Sysport\SysPortApp\libstreaming\src\main\AndroidManifest.xml
+		ADDED from C:\Users\USER\Documents\Sysport\SysPortApp\libstreaming\src\main\AndroidManifest.xml
 		INJECTED from C:\Users\USER\Documents\Sysport\SysPortApp\libstreaming\src\main\AndroidManifest.xml
