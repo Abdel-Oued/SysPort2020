@@ -31,10 +31,10 @@ object BaseURL {
  * Use the network builder to build a retrofit object using a Moshi converter with our Moshi
  * object.
  */
-private val retrofit = Retrofit.Builder()
+private val retrofit by lazy { Retrofit.Builder()
     .addConverterFactory(MoshiConverterFactory.create(moshi)) //ScalarsConverterFactory.create()  MoshiConverterFactory.create(moshi)
     .baseUrl(BaseURL.baseURL)
-    .build()
+    .build() }
 
 /**
  * A public interface that exposes the [getInformation] method
