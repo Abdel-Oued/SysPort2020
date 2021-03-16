@@ -129,8 +129,8 @@ with tf.Graph().as_default():
         with open(classifier_filename_exp, 'rb') as infile:
             (model, class_names) = pickle.load(infile)
 
-        video_capture = cv2.VideoCapture(input_video)
-        c = 0
+        video_capture = cv2.VideoCapture('rtsp://192.168.8.5:1234/')#input_video)
+        c = 0 #
 
         print('Start Recognition')
         prevTime = 0
