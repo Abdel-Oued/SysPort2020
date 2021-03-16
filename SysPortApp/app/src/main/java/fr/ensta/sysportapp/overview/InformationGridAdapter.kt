@@ -55,9 +55,9 @@ class InformationGridAdapter(val onClickListener: OnClickListener) : ListAdapter
      */
     override fun onBindViewHolder(holder: PersonInformationViewHolder, position: Int) {
         val personInformation = getItem(position)
-        holder.itemView.setOnClickListener {
-            onClickListener.onClick(personInformation)
-        }
+//        holder.itemView.setOnClickListener {
+//            onClickListener.onClick(personInformation)
+//        }
         holder.bind(personInformation)
     }
 

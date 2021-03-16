@@ -4,26 +4,40 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/overviewFragment">
+    app:startDestination="@id/connectionFragment">
+
+    <fragment
+        android:id="@+id/connectionFragment"
+        android:name="fr.ensta.sysportapp.overview.ConnectionFragment"
+        android:label="@string/app_name"
+        tools:layout="@layout/fragment_connection" >
+        <action
+            android:id="@+id/action_connectionFragment_to_overviewFragment"
+            app:destination="@id/overviewFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/overviewFragment"
         android:name="fr.ensta.sysportapp.overview.OverviewFragment"
-        android:label="fragment_overview"
+        android:label="@string/app_name"
         tools:layout="@layout/fragment_overview" >
         <action
-            android:id="@+id/action_showDetail"
-            app:destination="@id/detailFragment" />
+            android:id="@+id/action_overviewFragment_to_connectionFragment"
+            app:destination="@id/connectionFragment"
+            app:popUpTo="@+id/connectionFragment" />
+<!--        <action-->
+<!--            android:id="@+id/action_showDetail"-->
+<!--            app:destination="@id/detailFragment"/>-->
     </fragment>
 
-    <fragment
-        android:id="@+id/detailFragment"
-        android:name="fr.ensta.sysportapp.detail.DetailFragment"
-        android:label="fragment_detail"
-        tools:layout="@layout/fragment_detail">
-        <argument
-            android:name="selectedPerson"
-            app:argType="fr.ensta.sysportapp.network.PersonInformation"/>
-    </fragment>
+<!--    <fragment-->
+<!--        android:id="@+id/detailFragment"-->
+<!--        android:name="fr.ensta.sysportapp.detail.DetailFragment"-->
+<!--        android:label="fragment_detail"-->
+<!--        tools:layout="@layout/fragment_detail">-->
+<!--        <argument-->
+<!--            android:name="selectedPerson"-->
+<!--            app:argType="fr.ensta.sysportapp.network.PersonInformation"/>-->
+<!--    </fragment>-->
 
 </navigation>

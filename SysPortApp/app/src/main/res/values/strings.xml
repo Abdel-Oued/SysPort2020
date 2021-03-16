@@ -8,5 +8,9 @@
     <string name="show_all">Show all</string>
     <string name="show_rent">Rent</string>
     <string name="show_buy">Buy</string>
+    <string name="enter_ip_adress">192.168.0.24</string>
+    <string name="IPAddress">192.168.0.24</string>
+    <string name="AddIPAddress">Add</string>
+<!--    <string name="hello_blank_fragment">Hello blank fragment</string>-->
 
 </resources>

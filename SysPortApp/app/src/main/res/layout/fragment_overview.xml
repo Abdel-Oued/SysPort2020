@@ -13,7 +13,35 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context="fr.ensta.sysportapp.MainActivity">
+        tools:context="fr.ensta.sysportapp.OverviewFragment">
+
+<!--        <EditText-->
+<!--            android:id="@+id/edit_adress"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:autofillHints="@string/enter_ip_adress"-->
+<!--            android:ems="10"-->
+<!--            android:hint="@string/enter_ip_adress"-->
+<!--            android:padding="1dp"-->
+<!--            android:text="@string/IPAddress"-->
+<!--            android:textAlignment="center"-->
+<!--            app:layout_constraintBottom_toTopOf="@+id/surfaceVideo"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintLeft_toRightOf="@+id/btn_address"-->
+<!--            app:layout_constraintRight_toRightOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent"-->
+<!--            app:layout_constraintStart_toEndOf="@+id/btn_address" />-->
+
+<!--        <Button-->
+<!--            android:id="@+id/btn_address"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="@string/AddIPAddress"-->
+<!--            app:layout_constraintBottom_toTopOf="@+id/surfaceVideo"-->
+<!--            app:layout_constraintLeft_toLeftOf="parent"-->
+<!--            app:layout_constraintRight_toLeftOf="@+id/edit_adress"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent"/>-->
 
         <net.majorkernelpanic.streaming.gl.SurfaceView
             android:id="@+id/surfaceVideo"
@@ -41,6 +69,8 @@
             app:spanCount="2"
             tools:itemCount="10"
             tools:listitem="@layout/grid_view_item" />
+<!--            app:listData="@{viewModel.persons}"-->
+
 
         <ImageView
             android:id="@+id/status_image"
