@@ -1,6 +1,7 @@
 package fr.ensta.sysportapp
 
 import android.annotation.SuppressLint
+import android.graphics.Color
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
@@ -19,30 +20,23 @@ fun bindRecyclerView(recyclerView: RecyclerView, data: List<PersonInformation>?)
     adapter.submitList(data)
 }
 
-///**
-// * Uses the Glide library to load an image by URL into an [ImageView]
-// */
-//@BindingAdapter("imageUrl")
-//fun bindImage(imgView: ImageView, imgUrl: String?) {
-//    imgUrl?.let {
-//        val imgUri = imgUrl.toUri().buildUpon().scheme("https").build()
-//        Glide.with(imgView.context)
-//            .load(imgUri)
-//            .apply(RequestOptions()
-//                .placeholder(R.drawable.loading_animation)
-//                .error(R.drawable.ic_broken_image))
-//            .into(imgView)
-//    }
-//}
 
 @SuppressLint("SetTextI18n")
 @BindingAdapter("information")
 fun bindInformation(informationTextView: TextView, information: PersonInformation?) {
-    information?.let { informationTextView.text = """
+    information?.let {
+        if(information.tauxAlcool > 0.5) {
+            informationTextView.setTextColor(Color.RED)
+        }
+        else {
+            informationTextView.setTextColor(Color.GREEN)
+        }
+        informationTextView.text = """
      ${information.nom}
      ${information.prenom}
-     ${information.tauxAlcool}
-     ${information.dette}
+     %alcool : ${information.tauxAlcool}
+     dette   : ${information.dette}
+     (${information.x} , ${information.y})
      
      """.trimIndent()
     }
