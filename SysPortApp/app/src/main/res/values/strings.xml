@@ -5,12 +5,14 @@
     <string name="start">Start</string>
     <string name="stop">Stop</string>
     <string name="information">"Information place holder "</string>
-    <string name="show_all">Show all</string>
-    <string name="show_rent">Rent</string>
-    <string name="show_buy">Buy</string>
+    <string name="update_parameters">Update</string>
     <string name="enter_ip_adress">192.168.0.24</string>
     <string name="IPAddress">192.168.0.24</string>
-    <string name="AddIPAddress">Add</string>
-<!--    <string name="hello_blank_fragment">Hello blank fragment</string>-->
+    <string name="label_parameters">Parameters</string>
+    <string name="item_parameters">parameters</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <integer name="framerate">3</integer>
+    <integer name="bitrate">128000</integer>
 
 </resources>

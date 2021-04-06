@@ -12,11 +12,9 @@ import kotlinx.android.parcel.Parcelize
  */
 @Parcelize
 data class PersonInformation(
-        //@Json(name = "type")
     val nom: String,
-        //@Json(name = "img_src")
     val prenom: String,
-        //@Json(name = "price")
     val dette: Double,
-        //@Json(name = "id")
-    val tauxAlcool: Double) : Parcelable {}
+    val tauxAlcool: Double,
+    val x: Double,
+    val y: Double) : Parcelable {}

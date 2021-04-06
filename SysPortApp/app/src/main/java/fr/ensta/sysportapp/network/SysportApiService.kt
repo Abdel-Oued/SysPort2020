@@ -6,8 +6,8 @@ import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
+import retrofit2.http.*
 //import retrofit2.converter.scalars.ScalarsConverterFactory
-import retrofit2.http.GET
 
 // import kotlinx.coroutines.Deferred
 
@@ -21,10 +21,12 @@ private val moshi = Moshi.Builder()
     .build()
 
 /**
- * A public object to set the server URL
+ * A public object to set the parameters
  */
-object BaseURL {
-    var baseURL: String= " " //http://192.168.0.24:5000/"  // BaseURL.baseURL
+object Parameters {
+    var baseURL: String= " " //http://192.168.0.24:5000/"
+    var framerate: Int = 5
+    var bitrate: Int = 128000
 }
 
 /**
@@ -32,12 +34,12 @@ object BaseURL {
  * object.
  */
 private val retrofit by lazy { Retrofit.Builder()
-    .addConverterFactory(MoshiConverterFactory.create(moshi)) //ScalarsConverterFactory.create()  MoshiConverterFactory.create(moshi)
-    .baseUrl(BaseURL.baseURL)
+    .addConverterFactory(MoshiConverterFactory.create(moshi)) //ScalarsConverterFactory.create()  //MoshiConverterFactory.create(moshi)
+    .baseUrl(Parameters.baseURL)
     .build() }
 
 /**
- * A public interface that exposes the [getInformation] method
+ * A public interface that exposes the [getInformation] and [startCamera] methods
  */
 interface SysportApiService {
     /**
@@ -46,6 +48,14 @@ interface SysportApiService {
      */
     @GET("information/")
     suspend fun getInformation(): List<PersonInformation>
+
+    /**
+     * The @POST annotation indicates that the "information" endpoint will be requested with the POST
+     * HTTP method
+     */
+    @FormUrlEncoded
+    @POST("startcamera/")
+    fun startCamera(@Field("ip_adress") ip_adress:String): Call<String>
 }
 
 /**

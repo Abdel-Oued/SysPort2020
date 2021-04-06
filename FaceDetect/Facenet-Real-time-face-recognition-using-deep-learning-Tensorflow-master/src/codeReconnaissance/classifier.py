@@ -3,7 +3,7 @@ from __future__ import division
 from __future__ import print_function
 import tensorflow as tf
 import numpy as np
-from codeReconnaissance import facenet
+from src.codeReconnaissance import facenet
 import os
 import math
 import pickle

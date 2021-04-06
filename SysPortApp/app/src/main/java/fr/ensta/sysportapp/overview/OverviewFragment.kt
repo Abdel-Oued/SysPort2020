@@ -1,21 +1,14 @@
 package fr.ensta.sysportapp.overview
 
-import android.content.Context
 import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.preference.PreferenceManager
 import android.view.*
-import android.view.inputmethod.InputMethodManager
-import androidx.annotation.NonNull
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.findNavController
-import fr.ensta.sysportapp.R
 import fr.ensta.sysportapp.databinding.FragmentOverviewBinding
-import fr.ensta.sysportapp.network.BaseURL
-import kotlinx.android.synthetic.main.fragment_connection.*
+import fr.ensta.sysportapp.network.Parameters
 import net.majorkernelpanic.streaming.SessionBuilder
 import net.majorkernelpanic.streaming.gl.SurfaceView
 import net.majorkernelpanic.streaming.rtsp.RtspServer
@@ -29,7 +22,8 @@ class OverviewFragment : Fragment() {
     private var mSurfaceView: SurfaceView? = null
 
     /** Default quality of video streams.  */
-    var videoQuality = VideoQuality(320, 240, 3, 64000)
+    //var videoQuality = VideoQuality(320, 240, 3, 128000)
+    var videoQuality = VideoQuality(320, 240, Parameters.framerate, Parameters.bitrate)
 
 
     /**
@@ -79,47 +73,13 @@ class OverviewFragment : Fragment() {
             .setPreviewOrientation(90)
             .setContext(this.context)
             .setVideoQuality(videoQuality)
-            .setAudioEncoder(SessionBuilder.AUDIO_AAC).videoEncoder = SessionBuilder.VIDEO_H264
+            .setAudioEncoder(SessionBuilder.AUDIO_NONE).videoEncoder = SessionBuilder.VIDEO_H264
 
         // Starts the RTSP server
         this.context?.startService(Intent(this.context, RtspServer::class.java))
         //----------------------------------------------------------//
 
-
-        // Observe the navigateToSelectedPerson LiveData and Navigate when it isn't null
-        // After navigating, call displayPersonDetailsComplete() so that the ViewModel is ready
-        // for another navigation event.
-//        viewModel.navigateToSelectedPerson.observe(viewLifecycleOwner, Observer {
-//            if ( null != it ) {
-//                // Must find the NavController from the Fragment
-//                this.findNavController().navigate(OverviewFragmentDirections.actionShowDetail(it))
-//                // Tell the ViewModel we've made the navigate call to prevent multiple navigation
-//                viewModel.displayPersonDetailsComplete()
-//            }
-//        })
-
-        setHasOptionsMenu(true)
         return binding.root
     }
 
-//    // Entrer l'adresse IP du serveur
-//    private fun addAddress(view: View, binding: FragmentOverviewBinding) {
-//        //BaseURL.baseURL = "http://"+binding.editAdress.text.toString()+":8080/"
-//        binding.editAdress.visibility = View.GONE        // on cache le champ IP adress
-//        view.visibility = View.GONE              // on cache le bouton Add
-//        //btn_upload.visibility = View.VISIBLE
-//
-////       // Hide the keyboard
-//        val imm = this.context?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-//        imm.hideSoftInputFromWindow(view.windowToken, 0)
-//
-//    }
-
-    /**
-     * Inflates the overflow menu that contains filtering options.
-     */
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.overflow_menu, menu)
-        super.onCreateOptionsMenu(menu, inflater)
-    }
 }

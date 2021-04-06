@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools" >
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/titleConstraint"
+        android:id="@+id/connectionConstraint"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context="fr.ensta.sysportapp.ConnectionFragment" >
+        tools:context="fr.ensta.sysportapp.overview.ConnectionFragment" >
 
         <ImageView
             android:id="@+id/titleImage"
@@ -34,6 +34,7 @@
             android:padding="10dp"
             android:text="192.168.12.24"
             android:textAlignment="center"
+            android:textColor="@color/white"
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/btn_address"
             app:layout_constraintEnd_toEndOf="parent"
@@ -49,10 +50,11 @@
             android:layout_marginEnd="@dimen/horizontal_margin"
             android:paddingStart="@dimen/button_padding"
             android:paddingEnd="@dimen/button_padding"
-            android:text="@string/AddIPAddress"
-            android:textColor="@color/colorAccent"
+            android:text="@string/start"
+            android:textColor="@color/white"
             android:textSize="@dimen/button_text_size"
             android:textStyle="bold"
+            app:iconTint="#FFFFFF"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

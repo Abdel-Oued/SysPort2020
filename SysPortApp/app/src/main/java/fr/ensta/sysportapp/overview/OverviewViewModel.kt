@@ -62,6 +62,7 @@ class OverviewViewModel : ViewModel() {
                     _persons.value = SysportApi.retrofitService.getInformation()
                     _status.value = SysportApiStatus.DONE
                     Log.i("SysportApi", "Connection enabled !")
+                    // taux de rafraichissement
                     Thread.sleep(3000);
                 } catch (e: HttpException) {
                     _status.value = SysportApiStatus.ERROR
@@ -82,35 +83,6 @@ class OverviewViewModel : ViewModel() {
                     Log.i("SysportApi", "Connection error ! : Indetermined exception " + e.message)
                 }
             }
-
-//            try {
-//                _persons.value = SysportApi.retrofitService.getInformation()
-//                _status.value = SysportApiStatus.DONE
-//                Log.i("SysportApi", "Connection enabled !")
-//                getPersonActualInformation()
-//            } catch (e: HttpException) {
-//                _status.value = SysportApiStatus.ERROR
-//                _persons.value = ArrayList()
-//                Log.i("SysportApi", "Connection error ! : HttpException " + e.message)
-//                getPersonActualInformation()
-//            } catch (e: TimeoutException) {
-//                _status.value = SysportApiStatus.ERROR
-//                _persons.value = ArrayList()
-//                Log.i("SysportApi", "Connection error ! : TimeoutException " + e.message)
-//                getPersonActualInformation()
-//            }catch (e: IOException) {
-//                _status.value = SysportApiStatus.ERROR
-//                _persons.value = ArrayList()
-//                e.message
-//                Log.i("SysportApi", "Connection error ! : IOException " + e.message)
-//                getPersonActualInformation()
-//            } catch (e: Exception) {
-//                _status.value = SysportApiStatus.ERROR
-//                _persons.value = ArrayList()
-//                Log.i("SysportApi", "Connection error ! : Indetermined exception " + e.message)
-//                getPersonActualInformation()
-//            }
-
         }
     }
 

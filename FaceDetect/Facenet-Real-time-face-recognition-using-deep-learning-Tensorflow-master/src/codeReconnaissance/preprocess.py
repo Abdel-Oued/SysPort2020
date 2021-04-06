@@ -5,7 +5,7 @@ from scipy import misc
 import os
 import tensorflow as tf
 import numpy as np
-from codeReconnaissance import detect_face, facenet
+from src.codeReconnaissance import detect_face, facenet
 import imageio
 from PIL import Image
 
@@ -25,7 +25,7 @@ class preprocesses:
             gpu_options = tf.compat.v1.GPUOptions(per_process_gpu_memory_fraction=0.5)
             sess = tf.compat.v1.Session(config=tf.compat.v1.ConfigProto(gpu_options=gpu_options, log_device_placement=False))
             with sess.as_default():
-                pnet, rnet, onet = detect_face.create_mtcnn(sess, '../npy')
+                pnet, rnet, onet = detect_face.create_mtcnn(sess, './npy')
 
         minsize = 20  # minimum size of face
         threshold = [0.6, 0.7, 0.7]  # three steps's threshold

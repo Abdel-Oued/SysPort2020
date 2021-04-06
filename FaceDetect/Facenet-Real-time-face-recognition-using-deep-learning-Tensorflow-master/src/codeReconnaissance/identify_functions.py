@@ -3,30 +3,35 @@ from __future__ import division
 from __future__ import print_function
 
 import json
+import os
+import pickle
 
-import tensorflow as tf
 import cv2
 import numpy as np
-from src.codeReconnaissance import detect_face, facenet
-import os
-import time
-import pickle
+import tensorflow as tf
 from PIL import Image
+from threading import Thread
 
 from src.codeBdd import interroBdd
+from src.codeReconnaissance import detect_face, facenet
+
+video_source = ""
 
 bdd = interroBdd.Interro('Clients', 'Clients')
 
-input_video = 'rtsp://192.168.0.17:1234/' #"akshay_mov.mp4"
-modeldir = './model/20170511-185253.pb'
-classifier_filename = './class/classifier.pkl'
-npy = './npy'
-train_img = "./train_img"
 
-liste_json = []
+def identify_on_video():
+    input_video = 'rtsp://' + str(video_source) + ':1234/'
+    modeldir = './model/20170511-185253.pb'
+    classifier_filename = './class/classifier.pkl'
+    npy = './npy'
+    train_img = './train_img'
+    liste_json = []
 
-with tf.Graph().as_default():
-    gpu_options = tf.compat.v1.GPUOptions(per_process_gpu_memory_fraction=0.6)
+    tf.compat.v1.disable_eager_execution()
+
+    with tf.Graph().as_default():
+        gpu_options = tf.compat.v1.GPUOptions(per_process_gpu_memory_fraction=0.6)
     sess = tf.compat.v1.Session(config=tf.compat.v1.ConfigProto(gpu_options=gpu_options, log_device_placement=False))
     with sess.as_default():
         pnet, rnet, onet = detect_face.create_mtcnn(sess, npy)
@@ -55,7 +60,7 @@ with tf.Graph().as_default():
             (model, class_names) = pickle.load(infile)
 
         video_capture = cv2.VideoCapture(input_video)
-        c = 0 #
+        c = 0  #
 
         print('Start Recognition')
         prevTime = 0
@@ -73,12 +78,10 @@ with tf.Graph().as_default():
             M = cv2.getRotationMatrix2D((cX, cY), -90, 1.0)
             frame = cv2.warpAffine(frame_1, M, (w, h))
 
-
             frame = cv2.resize(frame, (0, 0), fx=0.5, fy=0.5)  # resize frame (optional)
 
-            curTime = time.time() + 1  # calc fps
+            # curTime = time.time() + 1  # calc fps
             timeF = frame_interval
-
 
             if (c % timeF == 0):  # la détection est faite chaque timeF frame
                 find_results = []
@@ -88,9 +91,10 @@ with tf.Graph().as_default():
                 frame = frame[:, :, 0:3]
                 bounding_boxes, _ = detect_face.detect_face(frame, minsize, pnet, rnet, onet, threshold, factor)
                 nrof_faces = bounding_boxes.shape[0]
-                print('Detected_FaceNum: %d' % nrof_faces)
+                # print('Detected_FaceNum: %d' % nrof_faces)
 
                 if nrof_faces > 0:
+                    print('Detected_FaceNum: %d' % nrof_faces)
                     det = bounding_boxes[:, 0:4]
                     img_size = np.asarray(frame.shape)[0:2]
 
@@ -130,9 +134,6 @@ with tf.Graph().as_default():
                         # print("predictions")
                         print(best_class_indices, ' with accuracy ', best_class_probabilities)
 
-                        # definir un sueil de probabilite
-
-
                         # # print(best_class_probabilities)
                         if best_class_probabilities > 0.53:
                             cv2.rectangle(frame, (bb[i][0], bb[i][1]), (bb[i][2], bb[i][3]), (0, 255, 0),
@@ -154,30 +155,16 @@ with tf.Graph().as_default():
                             nom = nom_prenom.split()[0]
                             prenom = nom_prenom.split()[1]
 
-                            # print("nom : ", nom)
-                            # print("taux d'alcool:", M.gation_ID(M.gation_index('\"%s\"' % (nom), 'Nom'), 'tauxAlcool'))
-                            # print("dette:", M.gation_ID(M.gation_index('\"%s\"' % (nom), 'Nom'), 'Dette'))
-
                             # écrire les données qui nous intéressent dans un fichier json pour ensuite les transmettre à l'application
-
-                            # data = {"nom": nom, "prenom": prenom,
-                            #         "dette": M.gation_ID(M.gation_index('\"%s\"' % (nom), 'Nom'), 'Dette'),
-                            #         "tauxAlcool": M.gation_ID(M.gation_index('\"%s\"' % (nom), 'Nom'), 'tauxAlcool')}
                             # avec les coordonnees
-                            data = {"nom": nom, "prenom": prenom,
-                                    "dette": bdd.gation_ID(bdd.gation_index('\"%s\"' % (nom), 'Nom'), 'Dette'),
-                                    "tauxAlcool": bdd.gation_ID(bdd.gation_index('\"%s\"' % (nom), 'Nom'), 'tauxAlcool'),
-                                    "x": int(bb[i][0]),
-                                    "y": int(bb[i][3])}
 
-                            # pour éviter d'ajouter 2 fois la même personne dans la liste de dictionnaire
-                            if data not in liste_json:
-                                liste_json.append(data)
-                            with open("../codeTransfert/information.json", "w") as write_file:
-                                json.dump(liste_json, write_file)
+                            t = Thread(target=writeInformation, args=(nom, prenom, bb, liste_json, i))
+                            t.start()
 
                 else:
-                    print('Alignment Failure')
+                    # print('Alignment Failure')
+                    pass
+
             # c+=1
             cv2.imshow('Video', frame)
 
@@ -187,6 +174,55 @@ with tf.Graph().as_default():
         video_capture.release()
         cv2.destroyAllWindows()
 
+        # à la fin on efface le contenu du fichier information.json
         liste_json = []
-        with open("../codeTransfert/information.json", "w") as write_file:
+        # with open("../codeTransfert/information.json", "w") as write_file:
+        with open("information.json", "w") as write_file:
             json.dump(liste_json, write_file)
+
+
+def addPerson(list_info, new_info):
+    """
+    Fonction pour la mise à jour de la liste des informations à renvoyer au téléphone
+    :param list_info: liste des informations
+    :param new_info: nouvelle information
+
+    :return: None
+    """
+    change = False
+    info = {}
+    indice = 0
+    for indice, info in enumerate(list_info):
+        if info["nom"] == new_info["nom"] and info["prenom"] == new_info["prenom"]:
+            change = True
+            break
+    if change:
+        list_info.remove(info)
+        list_info.insert(indice, new_info)
+    else:
+        list_info.append(new_info)
+    return
+
+
+def writeInformation(nom, prenom, bb, liste_json, i):
+    """
+
+    :return:
+    """
+    # écrire les données qui nous intéressent dans un fichier json pour ensuite les transmettre à l'application
+    # avec les coordonnees
+    data = {"nom": nom, "prenom": prenom,
+            "dette": bdd.gation_ID(bdd.gation_index('\"%s\"' % (nom), 'Nom'), 'Dette'),
+            "tauxAlcool": bdd.gation_ID(bdd.gation_index('\"%s\"' % (nom), 'Nom'),
+                                        'tauxAlcool'),
+            "x": int(bb[i][0]),
+            "y": int(bb[i][3])}
+
+    # pour éviter d'ajouter 2 fois la même personne dans la liste de dictionnaires
+    # on a créer une fonction pour l'ajout
+    addPerson(liste_json, data)
+    # with open("../codeTransfert/information.json", "w") as write_file:
+    with open("information.json", "w") as write_file:
+        json.dump(liste_json, write_file)
+
+    return

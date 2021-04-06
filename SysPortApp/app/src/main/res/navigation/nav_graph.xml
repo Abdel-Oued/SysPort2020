@@ -29,8 +29,12 @@
 <!--            android:id="@+id/action_showDetail"-->
 <!--            app:destination="@id/detailFragment"/>-->
     </fragment>
+    <fragment
+        android:id="@+id/parametersFragment"
+        android:name="fr.ensta.sysportapp.overview.ParametersFragment"
+        android:label="@string/label_parameters" />
 
-<!--    <fragment-->
+    <!--    <fragment-->
 <!--        android:id="@+id/detailFragment"-->
 <!--        android:name="fr.ensta.sysportapp.detail.DetailFragment"-->
 <!--        android:label="fragment_detail"-->

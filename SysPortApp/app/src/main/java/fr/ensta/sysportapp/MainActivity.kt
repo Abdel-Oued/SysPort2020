@@ -7,7 +7,6 @@ import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
 import fr.ensta.sysportapp.databinding.ActivityMain3Binding
-import fr.ensta.sysportapp.network.BaseURL
 import net.majorkernelpanic.streaming.rtsp.RtspServer
 
 class MainActivity : AppCompatActivity() {
