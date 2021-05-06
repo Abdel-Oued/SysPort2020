@@ -6,7 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
-import fr.ensta.sysportapp.databinding.ActivityMain3Binding
+import fr.ensta.sysportapp.databinding.ActivityMainBinding
 import net.majorkernelpanic.streaming.rtsp.RtspServer
 
 class MainActivity : AppCompatActivity() {
@@ -18,10 +18,9 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //setContentView(R.layout.activity_main)
-        val binding = DataBindingUtil.setContentView<ActivityMain3Binding>(this, R.layout.activity_main3)
+        val binding = DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
         val navController = this.findNavController(R.id.nav_host_fragment)
         NavigationUI.setupActionBarWithNavController(this, navController)
-        //BaseURL.baseURL = "http://192.168.0.24:8080/"
     }
 
     override fun onSupportNavigateUp(): Boolean {

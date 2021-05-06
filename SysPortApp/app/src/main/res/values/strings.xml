@@ -2,17 +2,21 @@
 <resources>
 
     <string name="app_name">SysPortApp</string>
-    <string name="start">Start</string>
+    <string name="start">Lancer</string>
     <string name="stop">Stop</string>
     <string name="information">"Information place holder "</string>
-    <string name="update_parameters">Update</string>
+    <string name="update_parameters">Actualiser</string>
     <string name="enter_ip_adress">192.168.0.24</string>
     <string name="IPAddress">192.168.0.24</string>
-    <string name="label_parameters">Parameters</string>
-    <string name="item_parameters">parameters</string>
+    <string name="label_parameters">Parametres</string>
+    <string name="item_parameters">parametres</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="bitrate">Bitrate</string>
+    <string name="framerate">Framerate</string>
+    <string name="delay">Delai d\'actualisation des informations (millisecondes)</string>
 
     <integer name="framerate">3</integer>
     <integer name="bitrate">128000</integer>
+    <integer name="delay">3000</integer>
 
 </resources>

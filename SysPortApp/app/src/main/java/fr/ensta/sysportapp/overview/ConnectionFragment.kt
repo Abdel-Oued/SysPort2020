@@ -9,7 +9,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
 import fr.ensta.sysportapp.R
 import fr.ensta.sysportapp.databinding.FragmentConnectionBinding
-import fr.ensta.sysportapp.network.Parameters
+import fr.ensta.sysportapp.Parameters
 import fr.ensta.sysportapp.network.SysportApi
 import retrofit2.Call
 import retrofit2.Response

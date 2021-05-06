@@ -8,7 +8,7 @@ import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import fr.ensta.sysportapp.databinding.FragmentOverviewBinding
-import fr.ensta.sysportapp.network.Parameters
+import fr.ensta.sysportapp.Parameters
 import net.majorkernelpanic.streaming.SessionBuilder
 import net.majorkernelpanic.streaming.gl.SurfaceView
 import net.majorkernelpanic.streaming.rtsp.RtspServer

@@ -14,6 +14,7 @@ import net.majorkernelpanic.streaming.rtsp.RtspServer
 import retrofit2.HttpException
 import java.io.IOException
 import java.util.concurrent.TimeoutException
+import fr.ensta.sysportapp.Parameters
 
 
 enum class SysportApiStatus { LOADING, ERROR, DONE }
@@ -63,7 +64,7 @@ class OverviewViewModel : ViewModel() {
                     _status.value = SysportApiStatus.DONE
                     Log.i("SysportApi", "Connection enabled !")
                     // taux de rafraichissement
-                    Thread.sleep(3000);
+                    Thread.sleep(3000); //Parameters.delay.toLong()
                 } catch (e: HttpException) {
                     _status.value = SysportApiStatus.ERROR
                     _persons.value = ArrayList()

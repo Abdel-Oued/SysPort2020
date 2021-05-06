@@ -7,6 +7,7 @@ import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.*
+import fr.ensta.sysportapp.Parameters
 //import retrofit2.converter.scalars.ScalarsConverterFactory
 
 // import kotlinx.coroutines.Deferred
@@ -19,15 +20,6 @@ import retrofit2.http.*
 private val moshi = Moshi.Builder()
     .add(KotlinJsonAdapterFactory())
     .build()
-
-/**
- * A public object to set the parameters
- */
-object Parameters {
-    var baseURL: String= " " //http://192.168.0.24:5000/"
-    var framerate: Int = 5
-    var bitrate: Int = 128000
-}
 
 /**
  * Use the network builder to build a retrofit object using a Moshi converter with our Moshi

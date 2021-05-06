@@ -7,7 +7,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
         <fragment
-            android:id="@+id/myNavHostFragment"
+            android:id="@+id/nav_host_fragment"
             android:name="androidx.navigation.fragment.NavHostFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -16,48 +16,48 @@
     </LinearLayout>
 
 </layout>
-    <!--<layout xmlns:android="http://schemas.android.com/apk/res/android"-->
-    <!--    xmlns:app="http://schemas.android.com/apk/res-auto"-->
-    <!--    xmlns:tools="http://schemas.android.com/tools">-->
-    <!--    <LinearLayout-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="match_parent"-->
-    <!--        android:color="@android:color/background_light"-->
-    <!--        tools:context=".MainActivity"-->
-    <!--        android:orientation="vertical">-->
+<!--<layout xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--    xmlns:app="http://schemas.android.com/apk/res-auto"-->
+<!--    xmlns:tools="http://schemas.android.com/tools">-->
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:color="@android:color/background_light"-->
+<!--        tools:context=".MainActivity"-->
+<!--        android:orientation="vertical">-->
 
-    <!--        <net.majorkernelpanic.streaming.gl.SurfaceView-->
-    <!--            android:id="@+id/surfaceVideo3"-->
-    <!--            android:layout_width="match_parent"-->
-    <!--            android:layout_height="412dp"/>-->
+<!--        <net.majorkernelpanic.streaming.gl.SurfaceView-->
+<!--            android:id="@+id/surfaceVideo3"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="412dp"/>-->
 
-    <!--        <ScrollView-->
-    <!--            android:layout_width="match_parent"-->
-    <!--            android:layout_height="327dp"-->
-    <!--            android:background="@color/black">-->
+<!--        <ScrollView-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="327dp"-->
+<!--            android:background="@color/black">-->
 
-    <!--            <LinearLayout-->
-    <!--                android:layout_width="match_parent"-->
-    <!--                android:layout_height="wrap_content"-->
-    <!--                android:orientation="vertical">-->
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:orientation="vertical">-->
 
-    <!--                <TextView-->
-    <!--                    android:id="@+id/information"-->
-    <!--                    android:layout_width="match_parent"-->
-    <!--                    android:layout_height="wrap_content"-->
-    <!--                    android:lineSpacingMultiplier="1.2"-->
-    <!--                    android:text="@string/information"-->
-    <!--                    android:textAlignment="center"-->
-    <!--                    android:textColor="@color/white"-->
-    <!--                    android:textSize="30sp" />-->
-
-
-    <!--            </LinearLayout>-->
-    <!--        </ScrollView>-->
+<!--                <TextView-->
+<!--                    android:id="@+id/information"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:lineSpacingMultiplier="1.2"-->
+<!--                    android:text="@string/information"-->
+<!--                    android:textAlignment="center"-->
+<!--                    android:textColor="@color/white"-->
+<!--                    android:textSize="30sp" />-->
 
 
-    <!--    </LinearLayout>-->
-    <!--</layout>-->
+<!--            </LinearLayout>-->
+<!--        </ScrollView>-->
+
+
+<!--    </LinearLayout>-->
+<!--</layout>-->
 
 
     <!--<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
