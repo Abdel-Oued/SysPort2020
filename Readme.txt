@@ -3,7 +3,7 @@
 ------------------------------- PARTIE I : PRE-REQUIS--------------------------
 Installer Python 3
 Installer les bibliothèques Python Tensorflow2, OpenCV, et Flask.
-Pour chacune d'elle saisir dans un terminal la commande : pip install nom_biliothèque
+Pour chacune d'elle saisir dans un terminal la commande : pip install nom_bibliothèque
 
 Il faut aussi installer Android Studio pour pouvoir compiler l'application sur un téléphone après l'avoir branché à l'ordinateur.
 
