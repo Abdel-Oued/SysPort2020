@@ -1,17 +1,22 @@
 # SysPort2020
 
+
 **FaceDetect** contient les codes destinés à tourner sur l'ordinateur (serveur web et IA).
 
 **SysPortApp** contient le code de l'application Android.
 
+
 ------------------------------- **PARTIE I : PRE-REQUIS** --------------------------
+
 Installer Python 3
 Installer les bibliothèques Python Tensorflow2, OpenCV, et Flask.
 Pour chacune d'elle saisir dans un terminal la commande : pip install nom_bibliothèque
 
 Il faut aussi installer Android Studio pour pouvoir compiler l'application sur un téléphone après l'avoir branché à l'ordinateur.
 
+
 -------------------- **PARTIE II : DESCRIPTION DES REPERTOIRES** -------------------------
+
 Répertoires:
 	FaceDetect :
 		Contient les codes Python dédiés à l'ordinateur
@@ -29,6 +34,7 @@ Description du sous-répertoire "FaceDetect" :
 
 	Face-Rec-Caffe :
 		Contient les codes de l'IA utilisant Caffe
+
 
 -------------------- **PARTIE III : CODES PYTHON** -----------------------------------
 
