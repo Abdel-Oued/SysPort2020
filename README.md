@@ -7,7 +7,7 @@
 
 
 
-------------------------------- **PARTIE I : PRE-REQUIS** --------------------------
+------------------------------- **PARTIE I : PRE-REQUIS** ---------------------------------------
 
 Installer Python 3
 Installer les bibliothèques Python Tensorflow2, OpenCV, et Flask.
@@ -17,7 +17,7 @@ Il faut aussi installer Android Studio pour pouvoir compiler l'application sur u
 
 
 
--------------------- **PARTIE II : DESCRIPTION DES REPERTOIRES** -------------------------
+-------------------- **PARTIE II : DESCRIPTION DES REPERTOIRES** ---------------------------------
 
 Répertoires:
 	FaceDetect :
@@ -39,7 +39,7 @@ Description du sous-répertoire "FaceDetect" :
 
 
 
--------------------- **PARTIE III : CODES PYTHON** -----------------------------------
+-------------------- **PARTIE III : CODES PYTHON** ------------------------------------------------
 
 Dans la suite on suppose qu'on se trouve dans le répertoire:
 	Facenet-Real-time-face-recognition-using-deep-learning-Tensorflow-master\src\codeReconnaissance
@@ -64,7 +64,7 @@ Le serveur se charge de lancer le programme de reconnaissance (identify_face_vid
 
 
 
--------------------- **PARTIE IV : FONCTIONNEMENT** -----------------------------------
+-------------------- **PARTIE IV : FONCTIONNEMENT** ------------------------------------------------
 
 1- Lancer le serveur
 
