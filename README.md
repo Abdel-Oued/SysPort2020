@@ -7,7 +7,7 @@
 
 
 
-------------------------------- **PARTIE I : PRE-REQUIS** ---------------------------------------
+------------------------------- **PARTIE I : PRE-REQUIS** ----------------------------------------
 
 Installer Python 3
 Installer les bibliothèques Python Tensorflow2, OpenCV, et Flask.
@@ -72,7 +72,7 @@ Le serveur se charge de lancer le programme de reconnaissance (identify_face_vid
 
 
 
--------------------- **PARTIE V : CONFIGURATION ANDROID STUDIO** -----------------------------------
+-------------------- **PARTIE V : CONFIGURATION ANDROID STUDIO** ------------------------------------
 
 1- Installer/mettre à jour la version 4.1.1 ou 4.1.2 d'Android Studio
 
