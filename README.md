@@ -6,6 +6,7 @@
 **SysPortApp** contient le code de l'application Android.
 
 
+
 ------------------------------- **PARTIE I : PRE-REQUIS** --------------------------
 
 Installer Python 3
@@ -13,6 +14,7 @@ Installer les bibliothèques Python Tensorflow2, OpenCV, et Flask.
 Pour chacune d'elle saisir dans un terminal la commande : pip install nom_bibliothèque
 
 Il faut aussi installer Android Studio pour pouvoir compiler l'application sur un téléphone après l'avoir branché à l'ordinateur.
+
 
 
 -------------------- **PARTIE II : DESCRIPTION DES REPERTOIRES** -------------------------
@@ -34,6 +36,7 @@ Description du sous-répertoire "FaceDetect" :
 
 	Face-Rec-Caffe :
 		Contient les codes de l'IA utilisant Caffe
+
 
 
 -------------------- **PARTIE III : CODES PYTHON** -----------------------------------
@@ -60,11 +63,14 @@ On a deux possibilités :
 Le serveur se charge de lancer le programme de reconnaissance (identify_face_video.identify_on_video) lorsqu'il recoit la requête correspondante à startCamera.
 
 
+
 -------------------- **PARTIE IV : FONCTIONNEMENT** -----------------------------------
 
 1- Lancer le serveur
 
 2- Saisir l'adresse du serveur sur le téléphone et lancer. 
+
+
 
 -------------------- **PARTIE V : CONFIGURATION ANDROID STUDIO** -----------------------------------
 
